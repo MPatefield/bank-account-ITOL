@@ -26,6 +26,7 @@ account2.withdraw(2000)
 account2.deposit(-1000)
 */
 
+
 const message = document.getElementById("message")
 const balance = document.getElementById("balance")
 const amount = document.getElementById("amount")
@@ -34,7 +35,12 @@ const withdrawButton = document.getElementById("withdraw-btn")
 const checkBalanceBtn = document.getElementById("check-balance-btn")
 const historyList = document.getElementById("history-list")
 
-const account1 = new BankAccount("Mattie", 0)
+const username = localStorage.getItem("username")
+const account1 = new BankAccount(username, 0)
+
+document.getElementById("account-owner").textContent = `Account Owner: ${username}`
+
+//const account1 = new BankAccount("Mattie", 0)
 
 depositButton.addEventListener("click", function() {
     const result = account1.deposit(Number(amount.value))
