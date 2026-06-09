@@ -7,31 +7,33 @@ export class BankAccount {
 constructor (accountOwner, startingBalance) {
     this.accountOwner = accountOwner
     this.#balance = startingBalance
+    this.transactionHistory = []
 }
  // Deposit Method for class takes in the amount parameter and uses IF statment to check whether the amount is greater than zero, and then adding the amount deposited to this.#balance
  deposit(amount) {
     if (amount <= 0) {
-        return ("error");
+        return ("Amount must be greater than zero");
     } else {
         this.#balance += amount;
-        //console used for testing purposes
-        console.log (`You have deposited: ${amount} and your new balance is: ${this.#balance}`);
+        this.transactionHistory.unshift(`Deposited: ${amount} - New Balance: ${this.#balance}`);
+        return (`You have succesfully deposited: ${amount}`);
     }}
     
     //withdraw method for class, takes the amount as a parameter and then does 2 checks, if the amount is less than or equal to zero and then checks wther the amount is greater than this.#balance. Once checks are complete it takes away the amount for this.#balance
     withdraw(amount) {
-        if (amount <= 0 || amount > this.#balance) {
-            return("error");
+        if (amount <= 0) {
+            return ("Amount must be greater than zero");
+        } else if (amount > this.#balance) {
+            return ("Insufficient funds");
         } else {
             this.#balance -= amount;
-            //console used for testing
-            console.log(`You have withdrawn ${amount} and your new balance is: ${this.#balance}`);
+            this.transactionHistory.unshift(`Withdrew: ${amount} - New Balance: ${this.#balance}`);
+            return (`You have succesfully withdrawn ${amount}`);
         }
     }
 
     //Simple method for checking the balance, just returns the balance contained within this.#balance
     checkBalance() {
-        console.log(`Your balance is: ${this.#balance}`)
         return this.#balance;
     }
 }

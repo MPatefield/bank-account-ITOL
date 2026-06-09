@@ -26,25 +26,40 @@ account2.withdraw(2000)
 account2.deposit(-1000)
 */
 
-
+const message = document.getElementById("message")
 const balance = document.getElementById("balance")
 const amount = document.getElementById("amount")
 const depositButton = document.getElementById("deposit-btn")
 const withdrawButton = document.getElementById("withdraw-btn")
 const checkBalanceBtn = document.getElementById("check-balance-btn")
+const historyList = document.getElementById("history-list")
 
 const account1 = new BankAccount("Mattie", 0)
 
 depositButton.addEventListener("click", function() {
-    account1.deposit(Number(amount.value))
+    const result = account1.deposit(Number(amount.value))
+    message.textContent = result
     balance.textContent = account1.checkBalance()
+    updateTransactionHistory()
 })
 
 withdrawButton.addEventListener("click", function(){
-    account1.withdraw(Number(amount.value))
+    const result = account1.withdraw(Number(amount.value))
+    message.textContent = result
     balance.textContent = account1.checkBalance()
+    updateTransactionHistory()
 })
 
 checkBalanceBtn.addEventListener("click", function(){
-    balance.textContent = account1.checkBalance()
+    const result = account1.checkBalance()
+    balance.textContent = result
 })
+
+function updateTransactionHistory() {
+    historyList.innerHTML = ""
+    account1.transactionHistory.forEach(transaction => {
+        const listItem = document.createElement("li")
+        listItem.textContent = transaction
+        historyList.appendChild(listItem)
+    })
+}
