@@ -1,5 +1,6 @@
 import { BankAccount } from "./bankAccount.js";
 
+/*
 //Creation of first new bank account with corresponding methods
 const account1 = new BankAccount("Mattie",100)
 
@@ -23,6 +24,27 @@ account2.checkBalance()
 account2.withdraw(2000)
 //Test case, should throw error
 account2.deposit(-1000)
+*/
 
 
+const balance = document.getElementById("balance")
+const amount = document.getElementById("amount")
+const depositButton = document.getElementById("deposit-btn")
+const withdrawButton = document.getElementById("withdraw-btn")
+const checkBalanceBtn = document.getElementById("check-balance-btn")
 
+const account1 = new BankAccount("Mattie", 0)
+
+depositButton.addEventListener("click", function() {
+    account1.deposit(Number(amount.value))
+    balance.textContent = account1.checkBalance()
+})
+
+withdrawButton.addEventListener("click", function(){
+    account1.withdraw(Number(amount.value))
+    balance.textContent = account1.checkBalance()
+})
+
+checkBalanceBtn.addEventListener("click", function(){
+    balance.textContent = account1.checkBalance()
+})
