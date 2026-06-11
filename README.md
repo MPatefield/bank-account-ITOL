@@ -34,8 +34,7 @@ Technologies used:
 
 Future Updates:
 
-- More functional account creation
-- Tweak TRansaction history so it shows most recent transactions
-- Date stamp entries into transaction history
-- More 'real-life' use of check balance function
-- Add setTimeout functions to simulate delays in processing (withdrawing or depositing cash at an ATM for example)
+- Account management — more robust account creation flow, including input validation and confirmation screens
+- Transaction history — entries sorted with the most recent at the top, with date and time stamps on every transaction
+- Balance display — balance updates passively without requiring a dedicated button press, reflecting real banking UX
+- Processing simulation — setTimeout delays on deposits and withdrawals to simulate ATM-style transaction processing, with loading feedback in the UI
