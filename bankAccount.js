@@ -3,7 +3,7 @@ export class BankAccount {
     //private field - cannot be accessed outside of the class
     #balance
 
-// Constructor to create the class passing in 2 parameters for the account name and starting balance
+// Constructor to create the class passing in 2 parameters for the account name and starting balance whilt creating an empty array for the transaction history, and assigning the balance to the private field #balance
 constructor (accountOwner, startingBalance) {
     this.accountOwner = accountOwner
     this.#balance = startingBalance
