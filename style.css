@@ -33,11 +33,17 @@ body {
     max-width: 400px;
 }
 
-h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--text-primary);
-    text-align: center;
+#balance-display h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--success);
+}
+
+#balance-display p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 input {
@@ -70,6 +76,18 @@ button {
     background-color: transparent;
     border: 1px solid var(--accent);
     color: var(--accent);
+}
+
+#deposit-btn {
+    background-color: var(--success);
+}
+
+#withdraw-btn {
+    background-color: var(--accent-secondary);
+}
+
+#check-balance-btn {
+    background-color: var(--accent);
 }
 
 #message {

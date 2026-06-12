@@ -15,8 +15,8 @@ constructor (accountOwner, startingBalance) {
         return ("Amount must be greater than zero");
     } else {
         this.#balance += amount;
-        this.transactionHistory.unshift(`Deposited: ${amount} - New Balance: ${this.#balance}`);
-        return (`You have succesfully deposited: ${amount}`);
+        this.transactionHistory.unshift(`Deposited: £${amount} - New Balance: £${this.#balance}`);
+        return (`You have succesfully deposited: £${amount}`);
     }}
     
     //withdraw method for class, takes the amount as a parameter and then does 2 checks, if the amount is less than or equal to zero and then checks wther the amount is greater than this.#balance. Once checks are complete it takes away the amount for this.#balance
@@ -27,8 +27,8 @@ constructor (accountOwner, startingBalance) {
             return ("Insufficient funds");
         } else {
             this.#balance -= amount;
-            this.transactionHistory.unshift(`Withdrew: ${amount} - New Balance: ${this.#balance}`);
-            return (`You have succesfully withdrawn ${amount}`);
+            this.transactionHistory.unshift(`Withdrew: £${amount} - New Balance: £${this.#balance}`);
+            return (`You have succesfully withdrawn £${amount}`);
         }
     }
 

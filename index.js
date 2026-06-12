@@ -27,6 +27,7 @@ account2.deposit(-1000)
 */
 
 
+
 const message = document.getElementById("message")
 const balance = document.getElementById("balance")
 const amount = document.getElementById("amount")
@@ -34,9 +35,17 @@ const depositButton = document.getElementById("deposit-btn")
 const withdrawButton = document.getElementById("withdraw-btn")
 const checkBalanceBtn = document.getElementById("check-balance-btn")
 const historyList = document.getElementById("history-list")
+const logoutBtn = document.getElementById("logout-btn")
+
+logoutBtn.addEventListener("click", function() {
+    window.location.href = "index.html"
+})
 
 const username = localStorage.getItem("username")
-const account1 = new BankAccount(username, 0)
+const savedBalance = Number(localStorage.getItem(`balance_${username}`)) || 0
+console.log(`Saved balance for ${username}: ${savedBalance}`)
+const account1 = new BankAccount(username, savedBalance)
+balance.textContent = account1.checkBalance()
 
 document.getElementById("account-owner").textContent = `Account Owner: ${username}`
 
@@ -44,6 +53,7 @@ document.getElementById("account-owner").textContent = `Account Owner: ${usernam
 
 depositButton.addEventListener("click", function() {
     const result = account1.deposit(Number(amount.value))
+    localStorage.setItem(`balance_${username}`, account1.checkBalance())
     message.textContent = result
     balance.textContent = account1.checkBalance()
     updateTransactionHistory()
@@ -51,6 +61,7 @@ depositButton.addEventListener("click", function() {
 
 withdrawButton.addEventListener("click", function(){
     const result = account1.withdraw(Number(amount.value))
+    localStorage.setItem(`balance_${username}`, account1.checkBalance())
     message.textContent = result
     balance.textContent = account1.checkBalance()
     updateTransactionHistory()
@@ -58,14 +69,25 @@ withdrawButton.addEventListener("click", function(){
 
 checkBalanceBtn.addEventListener("click", function(){
     const result = account1.checkBalance()
+    
     balance.textContent = result
 })
 
+
+
 function updateTransactionHistory() {
     historyList.innerHTML = ""
+    if (account1.transactionHistory.length === 0) {
+        const listItem = document.createElement("li")
+        listItem.textContent = "No transactions yet."
+        historyList.appendChild(listItem)
+        return
+    } else {
     account1.transactionHistory.forEach(transaction => {
         const listItem = document.createElement("li")
         listItem.textContent = transaction
         historyList.appendChild(listItem)
-    })
+    })}
 }
+
+updateTransactionHistory()
